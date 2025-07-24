@@ -24,7 +24,7 @@ export function Login() {
                 </CardContent>
                 <CardFooter>
                     <p className="text-xs text-center text-muted-foreground m-auto">
-                        © 2025 InsightWace. Desenvolvido por Geferson Holdorf <br />
+                        © 2025 InsightWave. Desenvolvido por Geferson Holdorf <br />
                     </p>
                 </CardFooter>
             </Card>

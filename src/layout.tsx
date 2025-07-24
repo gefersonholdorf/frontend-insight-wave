@@ -27,7 +27,7 @@ export function Layout() {
                     <div className="flex items-center gap-6">
                         <div className="flex items-center gap-2">
                             <img src={Logo} alt="Logo" width={40} />
-                            <h2 className="text-blue-950 text-xl font-bold">InsightFlow</h2>
+                            <h2 className="text-blue-950 text-xl font-bold">InsightWave</h2>
                         </div>
                         <ChevronLeft
                             size={28}
