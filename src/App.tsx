@@ -1,11 +1,16 @@
-import { Button } from "./components/ui/button";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Login } from "./pages/login";
 
 export function App() {
 
   return (
     <>
-      <h1 className="bg-green-500">Welcome to My App</h1>
-      <Button>Teste</Button>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Login />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
