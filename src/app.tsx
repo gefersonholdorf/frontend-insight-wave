@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Landing } from "./pages/landing";
 import { Login } from "./pages/login";
 import { Home } from "./pages/home";
+import { Layout } from "./layout";
+import { Dashboard } from "./pages/dashboard";
 
 export function App() {
 
@@ -11,9 +13,12 @@ export function App() {
         <Routes>
           <Route index element={<Landing />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<Home />} />
+          <Route element={<Layout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter >
     </>
   )
 }
