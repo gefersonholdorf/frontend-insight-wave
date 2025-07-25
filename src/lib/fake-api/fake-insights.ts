@@ -10,6 +10,7 @@ export interface Insight {
     createdBy: string
     status: 'Aberto' | 'Em Progresso' | 'Resolvido' | 'Encerrado'
     dateCreated: Date
+    dateUpdated: Date
     dateResolved: Date | null
 }
 
@@ -26,6 +27,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'Lucas Costa',
     status: 'Aberto',
     dateCreated: new Date('2025-07-24 20:40:00'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: null,
   },
   {
@@ -40,6 +42,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'João Lima',
     status: 'Em Progresso',
     dateCreated: new Date('2025-07-18'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: null,
   },
   {
@@ -54,6 +57,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'Bruno Dias',
     status: 'Aberto',
     dateCreated: new Date('2025-07-16'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: null,
   },
   {
@@ -68,6 +72,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'Lucas Costa',
     status: 'Em Progresso',
     dateCreated: new Date('2025-07-10'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: null,
   },
   {
@@ -82,6 +87,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'Gabriel Silva',
     status: 'Aberto',
     dateCreated: new Date('2025-07-15'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: null,
   },
   {
@@ -96,6 +102,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'Fernanda Oliveira',
     status: 'Aberto',
     dateCreated: new Date('2025-07-12'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: null,
   },
   {
@@ -110,6 +117,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'Camila Duarte',
     status: 'Resolvido',
     dateCreated: new Date('2025-07-08'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: new Date('2025-07-09'),
   },
   {
@@ -124,6 +132,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'Gabriel Silva',
     status: 'Encerrado',
     dateCreated: new Date('2025-07-01'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: new Date('2025-07-03'),
   },
   {
@@ -138,6 +147,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'Eduardo Martins',
     status: 'Aberto',
     dateCreated: new Date('2025-06-30'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: null,
   },
   {
@@ -152,6 +162,7 @@ export const insightsMock: Insight[] = [
     createdBy: 'João Lima',
     status: 'Em Progresso',
     dateCreated: new Date('2025-07-05'),
+    dateUpdated: new Date('2025-07-24 20:40:00'),
     dateResolved: null,
   },
 ];
