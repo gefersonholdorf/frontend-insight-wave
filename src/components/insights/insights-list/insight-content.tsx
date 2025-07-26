@@ -9,7 +9,7 @@ export function InsightContent() {
                 return (
                     <Link to={`/insights/${insight.id}`}>
                         <CardInsight.Wrapper key={insight.id}>
-                            <CardInsight.Header title={insight.title} status={insight.status} />
+                            <CardInsight.Header id={insight.id} title={insight.title} status={insight.status} />
                             <CardInsight.Content type={insight.type} priority={insight.priority} description={insight.description} />
                             <CardInsight.Footer createdBy={insight.createdBy} dateCreated={insight.dateCreated} />
                         </CardInsight.Wrapper>

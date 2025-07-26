@@ -1,18 +1,5 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { tv } from "tailwind-variants";
-
-const priorityVariant = tv({
-    base: '',
-    variants: {
-        priority: {
-            'Baixa': 'bg-emerald-500',
-            'Média': 'bg-blue-500',
-            'Alta': 'bg-orange-500',
-            'Crítica': 'bg-red-500',
-        }
-    }
-})
 
 export interface CardInsightContentProps {
     priority: 'Baixa' | 'Média' | 'Alta' | 'Crítica'
@@ -24,8 +11,8 @@ export function CardInsightContent({ priority, type, description }: CardInsightC
     return (
         <>
             <div className="flex gap-1">
-                <Badge className={priorityVariant({ priority: priority })}>{priority}</Badge>
-                <Badge className={priorityVariant({})}>{type}</Badge>
+                <Badge className='bg-gray-500'>{priority}</Badge>
+                <Badge className='bg-gray-500'>{type}</Badge>
             </div>
             <Separator />
             <div>

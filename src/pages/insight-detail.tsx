@@ -8,9 +8,11 @@ import dayjs from 'dayjs'
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 dayjs.locale('pt-br');
+import { Textarea } from "@/components/ui/textarea"
+import Comments from "@/components/ui/comments"
 
 const priorityVariant = tv({
-    base: 'p-1 px-3',
+    base: 'p-1 px-3 h-full mt-4',
     variants: {
         priority: {
             'Baixa': 'bg-emerald-500',
@@ -128,25 +130,50 @@ export function InsightDetail() {
                 </Card>
 
                 <Card className="p-6">
-                    <div className="flex items-start justify-between">
-                        <div>
-                            <span className="text-sm text-gray-500">Responsável</span>
-                            <div className="flex gap-1 items-center">
-                                <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-300">
-                                    <img
-                                        src="https://github.com/gefersonholdorf.png"
-                                        alt="Foto de perfil de Geferson Holdorf"
-                                        className="w-full h-full object-cover"
-                                        loading="lazy"
-                                    />
+                    <div className="flex flex-col items-start justify-between">
+                        <div className="flex items-start justify-between w-full">
+                            <div>
+                                <span className="text-sm text-gray-500">Responsável</span>
+                                <div className="flex gap-1 items-center mt-1">
+                                    <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-300">
+                                        <img
+                                            src="https://github.com/gefersonholdorf.png"
+                                            alt="Foto de perfil de Geferson Holdorf"
+                                            className="w-full h-full object-cover"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                    <span className="text-sm text-gray-900">{insight?.createdBy}</span>
                                 </div>
-                                <span className="text-sm text-gray-900">{insight?.createdBy}</span>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-sm text-gray-500">Prioridade</span>
+                                <Badge className={priorityVariant({ priority: insight?.priority })}>{insight?.priority}</Badge>
                             </div>
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-sm text-gray-500">Prioridade</span>
-                            <Badge className={priorityVariant({ priority: insight?.priority })}>{insight?.priority}</Badge>
+                        <Separator className="mt-3" />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-start gap-2">
+                            <div className="w-7 h-7 rounded-full overflow-hidden border border-gray-300">
+                                <img
+                                    src="https://github.com/gefersonholdorf.png"
+                                    alt="Foto de perfil de Geferson Holdorf"
+                                    className="w-full h-full object-cover"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <Textarea className="w-full h-[100px] resize-none overflow-auto break-all whitespace-pre-wrap" placeholder="Escreva um comentário..." />
                         </div>
+                        <div className="w-full grid grid-cols-2 gap-2">
+                            <Button className="bg-gray-950 hover:bg-gray-800">Cancelar</Button>
+                            <Button>Enviar</Button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <Comments />
                     </div>
                 </Card>
             </div>
