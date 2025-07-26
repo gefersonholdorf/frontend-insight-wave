@@ -3,7 +3,7 @@ import Avatar from '../../assets/avatar.png'
 
 export function HomePresentation() {
     return (
-        <Card className="bg-blue-500">
+        <Card className="bg-gradient-to-br from-blue-500 to-blue-700 transition-all duration-300 transform hover:scale-[1.00] hover:shadow-xl">
             <CardContent className="grid grid-cols-2 justify-between">
                 <div className="text-gray-100 h-full flex flex-col justify-center">
                     <h2 className="font-bold text-3xl text-shadow-2xs">Olá, Geferson</h2>
