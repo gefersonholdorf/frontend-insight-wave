@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge"
-import { Card } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { insightsMock } from "@/lib/fake-api/fake-insights"
-import { ArrowLeft, Check, Clock9, Newspaper, ShieldQuestionMark, X } from "lucide-react"
+import { ArrowLeft, Check, Clock9, Info, Newspaper, Pencil, ShieldQuestionMark, X } from "lucide-react"
 import { NavLink, useParams } from "react-router-dom"
 import { tv } from "tailwind-variants"
 import dayjs from 'dayjs'
@@ -10,9 +10,13 @@ import { Separator } from "@/components/ui/separator"
 dayjs.locale('pt-br');
 import { Textarea } from "@/components/ui/textarea"
 import Comments from "@/components/ui/comments"
+import { Input } from "@/components/ui/input"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { useState } from "react"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 const priorityVariant = tv({
-    base: 'p-1 px-3 h-full mt-4',
+    base: 'p-1 px-3',
     variants: {
         priority: {
             'Baixa': 'bg-emerald-500',
@@ -38,10 +42,21 @@ const statusVariant = tv({
 export function InsightDetail() {
     const { id } = useParams()
 
+    const [titleEdit, setTitleEdit] = useState(false)
+    const [descriptionEdit, setDescriptionEdit] = useState(false)
+
+    function handleSetTitleEdit() {
+        setTitleEdit(!titleEdit)
+    }
+
+    function handleSetDescriptionEdit() {
+        setDescriptionEdit(!descriptionEdit)
+    }
+
     const insight = insightsMock.find((insight) => insight.id === Number(id))
 
     return (
-        <div className="w-full ">
+        <div className="w-full">
             <NavLink to={"/insights"}>
                 <div className="flex gap-1 items-center text-center pl-10 lg:pl-0">
                     <ArrowLeft size={15} />
@@ -52,16 +67,33 @@ export function InsightDetail() {
                 <div className="flex gap-2 flex-col lg:flex-row items-center">
                     <div className="w-full flex gap-2 items-center justify-center lg:justify-start">
                         <Newspaper />
-                        <h1 className="text-center lg:text-start text-[1.2rem] font-bold text-gray-800">Feedback/Incidente Detalhado</h1>
+                        <h1 className="text-center lg:text-start text-[1.2rem] font-bold text-gray-800">Insight Detalhado</h1>
                     </div>
-                    <Button className="w-full lg:w-fit" variant="destructive">
-                        <X />
-                        Cancelar Insight
-                    </Button>
-                    <Button className="w-full lg:w-fit">
-                        <Clock9 />
-                        Iniciar Insight
-                    </Button>
+                    {insight?.status === 'Aberto' &&
+                        <>
+                            <Button className="w-full lg:w-fit" variant="destructive">
+                                <X />
+                                Cancelar Insight
+                            </Button>
+                            <Button className="w-full lg:w-fit">
+                                <Clock9 />
+                                Iniciar Insight
+                            </Button>
+                        </>
+                    }
+
+                    {insight?.status === 'Em Progresso' &&
+                        <>
+                            <Button className="w-full lg:w-fit" variant="destructive">
+                                <X />
+                                Cancelar Insight
+                            </Button>
+                            <Button className="w-full lg:w-fit bg-emerald-500 hover:bg-emerald-400">
+                                <Check />
+                                Resolver Insight
+                            </Button>
+                        </>
+                    }
                 </div>
             </Card>
 
@@ -69,7 +101,15 @@ export function InsightDetail() {
                 <Card className="p-6">
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center justify-between">
-                            <span className="font-medium text-sm text-gray-950">IS0000{insight?.id}</span>
+                            <div className="flex gap-2 items-center">
+                                <Tooltip>
+                                    <TooltipTrigger><Info size={20} className="text-yellow-500" /></TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Apenas o criador tem permissão de editar essa Insight</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                                <span className="font-medium text-sm text-gray-950">IS0000{insight?.id}</span>
+                            </div>
                             <Badge className={statusVariant({ status: insight?.status })}>
                                 {insight?.status === 'Aberto' && <ShieldQuestionMark />}
                                 {insight?.status === 'Em Progresso' && <Clock9 />}
@@ -82,41 +122,131 @@ export function InsightDetail() {
                     </div>
 
                     <div>
-                        <h3 className="text-xl font-semibold text-shadow-2xs">{insight?.title}</h3>
+                        {titleEdit === false ? (
+                            <div className="flex items-center gap-2">
+                                <h3 className="text-xl font-semibold text-shadow-2xs">{insight?.title}</h3>
+                                <Tooltip>
+                                    <TooltipTrigger
+                                        className="cursor-pointer"
+                                        onClick={handleSetTitleEdit}>
+                                        <Pencil size={20}
+                                            className="text-blue-500"
+                                        />
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Editar Título</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </div>
+                        ) : (
+                            <div className="flex items-center gap-2">
+                                <Input className="text-xl" value={insight?.title} />
+                                <Tooltip>
+                                    <TooltipTrigger
+                                        className="cursor-pointer"
+                                        onClick={handleSetTitleEdit}>
+                                        <X size={20}
+                                            className="text-red-500"
+                                        />
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Cancelar</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                                <Tooltip>
+                                    <TooltipTrigger
+                                        className="cursor-pointer"
+                                        onClick={handleSetTitleEdit}>
+                                        <Check size={20}
+                                            className="text-emerald-500"
+                                        />
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Confirmar</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </div>
+                        )}
+
                     </div>
 
-                    <div>
-                        <span className="text-sm text-gray-500">Descrição</span>
-                        <h3>{insight?.text}</h3>
+                    <div className="">
+                        <div className="flex items-center gap-2">
+                            <span className="text-sm text-gray-500">Descrição</span>
+                        </div>
+                        {descriptionEdit === false ? (
+                            <div className="flex flex-col gap-2 hover:bg-gray-100">
+                                <div className="border-1 border-gray-200 rounded-sm p-2 cursor-pointer" onClick={handleSetDescriptionEdit}>
+                                    <h3 className="font-medium text-sm text-gray-700 h-[150px] ">{insight?.text}</h3>
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <Textarea className="w-full h-[150px] resize-none overflow-auto break-all whitespace-pre-wrap" disabled value={insight?.text} />
+                                <div className="w-full grid grid-cols-2 gap-4 mt-2">
+                                    <Button onClick={handleSetDescriptionEdit} variant="destructive">
+                                        <X size={20}
+                                            className="text-white"
+                                        />
+                                        Cancelar
+                                    </Button>
+                                    <Button onClick={handleSetDescriptionEdit} className="bg-emerald-500 hover:bg-emerald-400">
+                                        <Check size={20}
+                                            className="text-white"
+                                        />
+                                        Confirmar
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
-                    <Separator />
+                    <div className="w-full flex flex-col items-start gap-3">
+                        <div className="w-full grid gap-6 grid-cols-2 hover:bg-gray-100 py-2 px-2 rounded-sm items-center">
+                            <span className="text-sm text-gray-700">Responsável</span>
+                            <div className="flex gap-1 items-center mt-1">
+                                <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-300">
+                                    <img
+                                        src="https://github.com/gefersonholdorf.png"
+                                        alt="Foto de perfil de Geferson Holdorf"
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <span className="text-sm text-gray-900">{insight?.responsible}</span>
+                            </div>
+                        </div>
 
-                    <div className="flex flex-col gap-1">
-                        <span className="text-sm text-gray-500">Categoria</span>
-                        <Badge className="p-1 px-3">{insight?.area}</Badge>
-                    </div>
+                        <div className="w-full grid gap-6 grid-cols-2 hover:bg-gray-100 py-2 px-2 rounded-sm">
+                            <span className="text-sm text-gray-700">Prioridade</span>
+                            <Badge className={priorityVariant({ priority: insight?.priority })}>{insight?.priority}</Badge>
+                        </div>
 
-                    <div className="flex flex-col gap-1">
-                        <span className="text-sm text-gray-500">Tipo</span>
-                        <Badge className="p-1 px-3">{insight?.type}</Badge>
-                    </div>
+                        <div className="w-full grid gap-6 grid-cols-2 hover:bg-gray-100 py-2 px-2 rounded-sm">
+                            <span className="text-sm text-gray-700">Categoria</span>
+                            <Badge className="p-1 px-3">{insight?.area}</Badge>
+                        </div>
 
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <span className="text-sm text-gray-500">Criado em</span>
+                        <div className="w-full grid gap-6 grid-cols-2 hover:bg-gray-100 py-2 px-2 rounded-sm">
+                            <span className="text-sm text-gray-700">Tipo</span>
+                            <Badge className="p-1 px-3">{insight?.type}</Badge>
+                        </div>
+
+                        <div className="w-full grid gap-6 grid-cols-2 hover:bg-gray-100 py-2 px-2 rounded-sm">
+                            <span className="text-sm text-gray-700">Criado em</span>
                             <h3 className="text-sm font-medium text-gray-800">{dayjs(insight?.dateCreated).format('DD/MM/YYYY HH:mm:ss')}</h3>
                         </div>
-                        <div>
-                            <span className="text-sm text-gray-500">Atualizado em</span>
+
+                        <div className="w-full grid gap-6 grid-cols-2 hover:bg-gray-100 py-2 px-2 rounded-sm">
+                            <span className="text-sm text-gray-700">Atualizado em</span>
                             <h3 className="text-sm font-medium text-gray-800">{dayjs(insight?.dateUpdated).format('DD/MM/YYYY HH:mm:ss')}</h3>
                         </div>
                     </div>
 
-                    <div>
-                        <span className="text-sm text-gray-500">Criado por</span>
-                        <div className="flex gap-1 items-center">
-                            <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-300">
+                    <div className="w-full grid gap-6 grid-cols-2 hover:bg-gray-100 py-2 px-2 rounded-sm items-center">
+                        <span className="text-sm text-gray-700">Criado por</span>
+                        <div className="flex gap-1 items-center mt-1">
+                            <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-300">
                                 <img
                                     src="https://github.com/gefersonholdorf.png"
                                     alt="Foto de perfil de Geferson Holdorf"
@@ -130,29 +260,9 @@ export function InsightDetail() {
                 </Card>
 
                 <Card className="p-6">
-                    <div className="flex flex-col items-start justify-between">
-                        <div className="flex items-start justify-between w-full">
-                            <div>
-                                <span className="text-sm text-gray-500">Responsável</span>
-                                <div className="flex gap-1 items-center mt-1">
-                                    <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-300">
-                                        <img
-                                            src="https://github.com/gefersonholdorf.png"
-                                            alt="Foto de perfil de Geferson Holdorf"
-                                            className="w-full h-full object-cover"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                    <span className="text-sm text-gray-900">{insight?.createdBy}</span>
-                                </div>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-sm text-gray-500">Prioridade</span>
-                                <Badge className={priorityVariant({ priority: insight?.priority })}>{insight?.priority}</Badge>
-                            </div>
-                        </div>
-                        <Separator className="mt-3" />
-                    </div>
+                    <CardHeader className="w-full">
+                        <CardTitle className="w-full text-center font-semibold text-gray-700 text-lg">Eventos/Comentários</CardTitle>
+                    </CardHeader>
 
                     <div className="flex flex-col gap-2">
                         <div className="flex items-start gap-2">
@@ -172,9 +282,9 @@ export function InsightDetail() {
                         </div>
                     </div>
 
-                    <div>
+                    <ScrollArea className="h-[500px] rounded-md border p-4">
                         <Comments />
-                    </div>
+                    </ScrollArea>
                 </Card>
             </div>
         </div>

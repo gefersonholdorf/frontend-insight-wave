@@ -17,13 +17,13 @@ export function Layout() {
         <div className="relative w-full min-h-screen flex bg-gray-100">
             <aside
                 className={`
-    fixed top-0 left-0 z-40
-    h-screen w-64 bg-white shadow-2xs border-r
-    flex flex-col justify-between
-    transition-transform duration-300 ease-in-out
-    ${open ? 'translate-x-0' : '-translate-x-full'}
-    lg:translate-x-0 lg:sticky lg:top-0
-  `}
+                    fixed top-0 left-0 z-40
+                    h-screen w-64 bg-white shadow-2xs border-r
+                    flex flex-col justify-between
+                    transition-transform duration-300 ease-in-out
+                    ${open ? 'translate-x-0' : '-translate-x-full'}
+                    lg:translate-x-0 lg:sticky lg:top-0
+                `}
             >
                 <div className="flex flex-col justify-between items-center mb-6 p-6">
                     <div className="flex items-center gap-6">

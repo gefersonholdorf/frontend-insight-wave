@@ -1,5 +1,6 @@
 import { HomeWrapper } from "@/components/home/home-wrapper";
 import { Card } from "@/components/ui/card";
+import Status from "@/components/ui/status";
 import { House } from "lucide-react";
 
 export function Home() {
@@ -11,8 +12,9 @@ export function Home() {
                         <House />
                         <h1 className="text-center lg:text-start text-2xl font-bold text-gray-800">Home</h1>
                     </div>
-                    <div className="w-full">
-                        Colocar Status API
+                    <div className="flex gap-2">
+                        <Status name="API" active="OFF" />
+                        <Status name="Database" active="OFF" />
                     </div>
                 </div>
             </Card>

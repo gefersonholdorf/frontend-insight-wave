@@ -31,9 +31,9 @@ export function HomeWrapper() {
                         Seu atalho diário:
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                        <HomeShortcut title="Criar Insight" icon={<Newspaper size={40} className="text-gray-700" />} />
-                        <HomeShortcut title="Alterar Usuário" icon={<User size={40} className="text-gray-700" />} />
-                        <HomeShortcut title="Acessar Dashboard" icon={<LayoutDashboard size={40} className="text-gray-700" />} />
+                        <HomeShortcut title="Criar Insight" icon={<Newspaper size={40} className="text-blue-700" />} />
+                        <HomeShortcut title="Alterar Usuário" icon={<User size={40} className="text-blue-700" />} />
+                        <HomeShortcut title="Acessar Dashboard" icon={<LayoutDashboard size={40} className="text-blue-700" />} />
                     </div>
                 </div>
                 <div>
