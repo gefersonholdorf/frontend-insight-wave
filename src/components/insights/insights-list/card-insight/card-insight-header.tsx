@@ -17,18 +17,22 @@ const statusVariant = tv({
 export interface CardInsightHeaderProps {
     status: 'Aberto' | 'Em Progresso' | 'Resolvido' | 'Encerrado'
     title: string
+    id: number
 }
 
-export function CardInsightHeader({ status, title }: CardInsightHeaderProps) {
+export function CardInsightHeader({ status, title, id }: CardInsightHeaderProps) {
     return (
         <>
-            <Badge className={statusVariant({ status: status })}>
-                {status === 'Aberto' && <ShieldQuestionMark />}
-                {status === 'Em Progresso' && <Clock9 />}
-                {status === 'Resolvido' && <Check />}
-                {status === 'Encerrado' && <X />}
-                {status}
-            </Badge>
+            <div className="flex items-center justify-between">
+                <Badge className={statusVariant({ status: status })}>
+                    {status === 'Aberto' && <ShieldQuestionMark />}
+                    {status === 'Em Progresso' && <Clock9 />}
+                    {status === 'Resolvido' && <Check />}
+                    {status === 'Encerrado' && <X />}
+                    {status}
+                </Badge>
+                <span className="font-medium text-sm text-gray-600">IS000{id}</span>
+            </div>
             <div className="">
                 <h3 className="text-lg font-semibold ">{title}</h3>
             </div>

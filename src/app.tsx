@@ -6,6 +6,7 @@ import { Layout } from "./layout";
 import { Dashboard } from "./pages/dashboard";
 import { Insight } from "./pages/insight";
 import { InsightDetail } from "./pages/insight-detail";
+import { CreateInsight } from "./pages/create-insight";
 
 export function App() {
 
@@ -20,6 +21,7 @@ export function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/insights" element={<Insight />} />
             <Route path="/insights/:id" element={<InsightDetail />} />
+            <Route path="/create-insight" element={<CreateInsight />} />
           </Route>
         </Routes>
       </BrowserRouter >
