@@ -10,7 +10,7 @@ export function HomeSummary({ title, quantity }: HomeSummaryProps) {
     return (
         <Card className="transition-all duration-300 transform hover:scale-[1.00] hover:shadow-xl">
             <CardHeader>
-                <CardDescription className="text-sm">{title}</CardDescription>
+                <CardDescription className="text-sm text-center">{title}</CardDescription>
             </CardHeader>
             <CardContent className="flex gap-3 items-center justify-center">
                 {title === 'Insights Em Aberto' && <ShieldQuestionMark className="text-red-500" size={35} />}

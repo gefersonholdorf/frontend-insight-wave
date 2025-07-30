@@ -1,4 +1,4 @@
-export interface Insight {
+export interface IInsight {
     id: number
     title: string
     description: string
@@ -6,7 +6,7 @@ export interface Insight {
     type: 'Bug' | 'Ideia' | 'Sugestão' | 'Incidente'
     area: 'Frontend' | 'Backend' | 'Produto' | 'UX' | 'Infra'
     priority: 'Baixa'| 'Média' | 'Alta' | 'Crítica'
-    responsible: string
+    responsibleId: string
     createdBy: string
     status: 'Aberto' | 'Em Progresso' | 'Resolvido' | 'Encerrado'
     dateCreated: Date
@@ -14,7 +14,7 @@ export interface Insight {
     dateResolved: Date | null
 }
 
-export const insightsMock: Insight[] = [
+export const insightsMock: IInsight[] = [
   {
     id: 1,
     title: 'Erro no botão de login',
@@ -23,7 +23,7 @@ export const insightsMock: Insight[] = [
     type: 'Bug',
     area: 'Frontend',
     priority: 'Alta',
-    responsible: 'Gabriel Silva',
+    responsibleId: "1",
     createdBy: 'Lucas Costa',
     status: 'Aberto',
     dateCreated: new Date('2025-07-24 20:40:00'),
@@ -38,7 +38,7 @@ export const insightsMock: Insight[] = [
     type: 'Sugestão',
     area: 'Produto',
     priority: 'Média',
-    responsible: 'Fernanda Oliveira',
+    responsibleId: "1",
     createdBy: 'João Lima',
     status: 'Em Progresso',
     dateCreated: new Date('2025-07-18'),
@@ -53,7 +53,7 @@ export const insightsMock: Insight[] = [
     type: 'Ideia',
     area: 'UX',
     priority: 'Baixa',
-    responsible: 'Camila Duarte',
+    responsibleId: "1",
     createdBy: 'Bruno Dias',
     status: 'Aberto',
     dateCreated: new Date('2025-07-16'),
@@ -68,7 +68,7 @@ export const insightsMock: Insight[] = [
     type: 'Bug',
     area: 'Backend',
     priority: 'Crítica',
-    responsible: 'Eduardo Martins',
+    responsibleId: "1",
     createdBy: 'Lucas Costa',
     status: 'Em Progresso',
     dateCreated: new Date('2025-07-10'),
@@ -83,7 +83,7 @@ export const insightsMock: Insight[] = [
     type: 'Incidente',
     area: 'Infra',
     priority: 'Alta',
-    responsible: 'Renata Lima',
+    responsibleId: "1",
     createdBy: 'Gabriel Silva',
     status: 'Aberto',
     dateCreated: new Date('2025-07-15'),
@@ -97,8 +97,8 @@ export const insightsMock: Insight[] = [
     text: 'Facilitar a entrada de novos colaboradores no sistema.',
     type: 'Sugestão',
     area: 'UX',
+    responsibleId: "1",
     priority: 'Média',
-    responsible: 'Bruno Dias',
     createdBy: 'Fernanda Oliveira',
     status: 'Aberto',
     dateCreated: new Date('2025-07-12'),
@@ -113,7 +113,7 @@ export const insightsMock: Insight[] = [
     type: 'Bug',
     area: 'Frontend',
     priority: 'Alta',
-    responsible: 'João Lima',
+    responsibleId: "1",
     createdBy: 'Camila Duarte',
     status: 'Resolvido',
     dateCreated: new Date('2025-07-08'),
@@ -128,7 +128,7 @@ export const insightsMock: Insight[] = [
     type: 'Bug',
     area: 'Frontend',
     priority: 'Média',
-    responsible: 'Fernanda Oliveira',
+    responsibleId: "1",
     createdBy: 'Gabriel Silva',
     status: 'Encerrado',
     dateCreated: new Date('2025-07-01'),
@@ -143,7 +143,7 @@ export const insightsMock: Insight[] = [
     type: 'Ideia',
     area: 'UX',
     priority: 'Baixa',
-    responsible: 'Lucas Costa',
+    responsibleId: "1",
     createdBy: 'Eduardo Martins',
     status: 'Aberto',
     dateCreated: new Date('2025-06-30'),
@@ -158,7 +158,7 @@ export const insightsMock: Insight[] = [
     type: 'Incidente',
     area: 'Backend',
     priority: 'Crítica',
-    responsible: 'Renata Lima',
+    responsibleId: "1",
     createdBy: 'João Lima',
     status: 'Em Progresso',
     dateCreated: new Date('2025-07-05'),

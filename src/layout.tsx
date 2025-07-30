@@ -45,7 +45,7 @@ export function Layout() {
                 <nav className="flex flex-col gap-1 w-full p-2">
                     <Link to="/home"><NavComponent active={location.pathname === '/home' ? 'select' : 'default'} title="Home" icon={<House size={15} />} /></Link>
                     <Link to="/dashboard"><NavComponent active={location.pathname === '/dashboard' ? 'select' : 'default'} title="Dashboard" icon={<LayoutDashboard size={15} />} /></Link>
-                    <Link to="/insights"><NavComponent active={location.pathname === '/insights' ? 'select' : 'default'} title="Feedbacks/Incidentes" icon={<Newspaper size={15} />} /></Link>
+                    <Link to="/insights"><NavComponent active={location.pathname.includes('insight') ? 'select' : 'default'} title="Insights" icon={<Newspaper size={15} />} /></Link>
                     <Link to="/users"><NavComponent active={location.pathname === '/users' ? 'select' : 'default'} title="Usuários" icon={<Users size={15} />} /></Link>
                 </nav>
 

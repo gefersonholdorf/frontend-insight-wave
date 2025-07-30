@@ -1,6 +1,7 @@
 import { Newspaper, Plus } from "lucide-react";
 import { Button } from "../../ui/button";
 import { Card } from "@/components/ui/card";
+import { NavLink } from "react-router-dom";
 
 export function InsightHeader() {
     return (
@@ -11,7 +12,12 @@ export function InsightHeader() {
                     <h1 className="text-center lg:text-start text-2xl font-bold text-gray-800">Feedbacks/Incidentes</h1>
                 </div>
                 <div>
-                    <Button><Plus size={15} className="text-white" />Novo Feedback/Incidente</Button>
+                    <NavLink to={'/create-insight'}>
+                        <Button>
+                            <Plus size={15} className="text-white" />
+                            Novo Feedback/Incidente
+                        </Button>
+                    </NavLink>
                 </div>
             </div>
         </Card>
